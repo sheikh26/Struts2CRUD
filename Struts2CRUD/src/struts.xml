@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+        <default-action-ref name ="index"></default-action-ref>
+        <action name="index" class="com.struts.actions.ContactAction"> 
+           
+            <result name="success">CRUD.jsp</result>
+        </action> 
+        <!--execute()  method is default method which  gets called when no method is specified-->
+             <!-- execute()  method is default method which  gets called when we call /index action from browser.
+             It fetches the all the records and display in index.jsp.-->
+        <action name="add"
+            class="com.struts.actions.ContactAction" method="add">
+            <result name="success" type="chain">index</result>
+            <result name="input" type="chain">index</result>
+        </action>
+        
+        <action name="deleteContact"
+            class="com.struts.actions.ContactAction" method="deleteContact">
+            <result name="success" type="chain">index</result>
+            
+        </action>
+         <action name="removeContact"
+            class="com.struts.actions.ContactAction" method="removeContact">
+            <result name="success" type="chain">index</result>
+            
+        </action>
+        <action name="update"
+            class="com.struts.actions.ContactAction" method="update">
+            <result name="success" type="chain">index</result>
+            
+        </action>
+        
+        <action name="editLink"
+            class="com.struts.actions.ContactAction">
+            <result name="success">update.jsp</result>
+        </action>     
+        
+       
+          <action name="listContacts" method="listContacts"
+            class="com.struts.actions.ContactAction" > 
+            <result name="success">index.jsp</result>
+        </action>        
+      
+     </package>
+</struts>
